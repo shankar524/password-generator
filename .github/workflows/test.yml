@@ -21,12 +21,12 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29
-          working-directory: src/cmd/
+          working-directory: ./src/cmd/
       - name: Run linters on text
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29
-          working-directory: src/text/
+          working-directory: ./src/text/
 
   test:
     strategy:
@@ -75,4 +75,4 @@ jobs:
         uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{ secrets.github_token }}
-          path-to-lcov: text/coverage.lcov
+          path-to-lcov: src/coverage.lcov
