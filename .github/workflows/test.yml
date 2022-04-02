@@ -17,11 +17,16 @@ jobs:
           go-version: 1.17.x
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Run linters
+      - name: Run linters on cmd
         uses: golangci/golangci-lint-action@v2
         with:
           version: v1.29
-          working-directory: src/
+          working-directory: src/cmd
+      - name: Run linters on text
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+          working-directory: src/text
 
   test:
     strategy:
