@@ -20,8 +20,8 @@ const (
 	LOWER_CHARS_SET     = "abcdefghijklmnopqrstuvwxyz"
 	SPECIAL_CHARS_SET   = "~!@#$%^&*()_+`-={}|[]\\:\"<>?,./"
 	NUMBERS_SET         = "0123456789"
-	DEFAULT_UPPER_CHARS = 6
-	DEFAULT_LOWER_CHARS = 5
+	DEFAULT_UPPER_CHARS = 4
+	DEFAULT_LOWER_CHARS = 3
 )
 
 type TextRule struct {
