@@ -75,7 +75,7 @@ func addTextRule(textBuilder *text.TextBuilder, textFor text.RuleType, length in
 
 func init() {
 	// get flags
-	SymbolsCountFlag = generateCmd.Flags().Int64P("symbol", "s", 0, "number of symbols to generate in return text")
+	SymbolsCountFlag = generateCmd.Flags().Int64P("symbols", "s", 0, "number of symbols to generate in return text")
 	UppercaseCountFlag = generateCmd.Flags().Int64P("up", "u", 0, "number of upper case letters to generate in return text")
 	DowncaseCountFlag = generateCmd.Flags().Int64P("down", "d", 0, "number of down case letters to generate in return text")
 	DigitsCountFlag = generateCmd.Flags().Int64P("numbers", "n", 0, "number of numerical digits to generate in return text")
