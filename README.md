@@ -1,2 +1,2 @@
 # password-generator
-password-generator is clommand line interface app to generate random password. 
+password-generator is command line interface app to generate random password. 
