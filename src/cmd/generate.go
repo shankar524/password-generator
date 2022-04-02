@@ -24,11 +24,11 @@ var (
 			)
 			textBuilder := text.TextBuilder{}
 
-			//
-			convertOrSetDefault(*SymbolsCountFlag, &symbolsCount, text.DEFAULT_SYMBOLS)
-			convertOrSetDefault(*UppercaseCountFlag, &upcaseCount, text.DEFAULT_UPPER_CHARS)
-			convertOrSetDefault(*DowncaseCountFlag, &downcaseCount, text.DEFAULT_LOWER_CHARS)
-			convertOrSetDefault(*DigitsCountFlag, &numbersCount, text.DEFAULT_NUMBERS)
+			// set default values and convert int64 to int
+			symbolsCount = int(*SymbolsCountFlag)
+			upcaseCount = int(*UppercaseCountFlag)
+			downcaseCount = int(*DowncaseCountFlag)
+			numbersCount = int(*DigitsCountFlag)
 
 			// add text rules
 			addTextRule(&textBuilder, text.LOWERCASE, downcaseCount)
@@ -58,14 +58,6 @@ var (
 		},
 	}
 )
-
-func convertOrSetDefault(source int64, dest *int, defaultValue int) {
-	if source < 0 {
-		*dest = defaultValue
-	} else {
-		*dest = int(source)
-	}
-}
 
 func addTextRule(textBuilder *text.TextBuilder, textFor text.RuleType, length int) {
 	if length > 0 {
