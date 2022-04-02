@@ -25,6 +25,7 @@ jobs:
       - name: Run tests
         run: |
           go mod download
+          go mod tidy
           make record-test-coverage
 
   coverage:
@@ -40,6 +41,7 @@ jobs:
       - name: Calc coverage
         run: |
           go mod download
+          go mod tidy
           make record-test-coverage
       - name: Convert coverage.out to coverage.lcov
         uses: jandelgado/gcov2lcov-action@v1.0.6
