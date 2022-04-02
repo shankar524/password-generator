@@ -60,10 +60,8 @@ jobs:
           working-directory: text
       - name: Generate .coveralls.yml file
         run: |
-            echo -n 'repo_token:' > .coveralls.yml
-            echo -n ' ' >> .coveralls.yml
-            echo ${{ secrets.COVERALLS_REPO_TOKEN }} >> .coveralls.yml
-            cat .coveralls.yml
+          echo "${{ secrets.COVERALLS_REPO_TOKEN }}" > .coveralls.yml
+          cat .coveralls.yml
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2
         with:
