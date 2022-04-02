@@ -59,9 +59,7 @@ jobs:
           outfile: coverage.lcov
           working-directory: text
       - name: Generate .coveralls.yml file
-        run: |
-          echo "${{ secrets.COVERALLS_REPO_TOKEN }}" > .coveralls.yml
-          cat .coveralls.yml
+        run: echo "${{ secrets.COVERALLS_REPO_TOKEN }}" > .coveralls.yml
       - name: Coveralls
         uses: coverallsapp/github-action@v1.1.2
         with:
