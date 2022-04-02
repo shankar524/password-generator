@@ -44,7 +44,6 @@ jobs:
         with:
           infile: coverage.out
           outfile: coverage.lcov
-          working-directory: src
       - name: Generate .coveralls.yml file
         run: echo "${{ secrets.COVERALLS_REPO_TOKEN }}" > .coveralls.yml
       - name: Coveralls
