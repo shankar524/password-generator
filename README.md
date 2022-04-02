@@ -5,7 +5,10 @@
 # password-generator
 `password-generator` is command line interface app to generate random password. This app can be used to generate any random text from provided rules.
 
-### usage
+### requirement
+Should have go installed. Go can be downloaded from [here](https://go.dev/dl/).
+
+### App usage
 
 - Clone repo:
 ```
@@ -41,10 +44,45 @@ or
 
 #### Available Flags
 
-| Flag   | Short |Type   |Default value |Meaning|
-| -------| ------|-------|--------------|:------------------------------------------------------:|
+| Flag   | Short |type   |Default value |Meaning        |
+| -------| ------|-------|--------------|:-------------:|
 | symbols| s     |number |0             |number of symbols to generate in return text| 
 | up     | u     |number |4             | number of upper case letters to generate in return text|
 | down   | d     |number |3             | number of down case letters to generate in return text|
 | numbers| n     |number |0             | number of numerical digits to generate in return text|
 | copy   | c     |boolean|true          | copy generated text to clipboard.If set false then prints text in console itself|
+
+### Package usage
+This package can also be used as common library to generate random text from provided text rule.
+`text.TextBuilder` implements `text.Builder` interface which include following two function to help build text rule
+- AddRule(TextRule) Builder
+- Build() (Generator, error)
+Also `text.text` implements `text.Generator` interface which allows us to generate text
+- Generate() string
+
+Sample code usage:
+
+```go
+  import(
+    "github.com/shankar524/password-generator/src/text"
+  )
+  // create textBuilder
+  textBuilder := text.TextBuilder{}
+  textBuilder.AddRule(text.TextRule{For: text.LOWERCASE, Length: 6})
+  textBuilder.AddRule(text.TextRule{For: text.NUMBERS, Length: 2})
+  textBuilder.AddRule(text.TextRule{For: text.UPPERCASE, Length: 2})
+  textBuilder.AddRule(text.TextRule{For: text.SYMBOLS, Length: 2})
+
+  generator, err:= textBuilder.Build()
+  if err!= nil {
+    fmt.printf("error creating text generator. Error: %s", err.Error())
+    return
+  }
+
+  fmt.Print(generator.Generate())
+
+  // generate default generator
+  defaultBuilder := text.TextBuilder{}
+  defaultGenerator, _ := defaultBuilder.Build()
+  fmt.Print(defaultGenerator.Generate())
+```
