@@ -11,3 +11,10 @@ This page should be used to track and note changes in each release version
 - Mechanism to pass flags to copy generated text
     - `--copy`: if set true copies text to clipboard else just prints in console
 --------
+## [v1.0.1]
+### Added
+- Use singular form instead of plural
+- Flags updated
+    - Numbers: `--number`
+    - Symbols: `--symbol`
+--------

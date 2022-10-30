@@ -16,7 +16,7 @@ git clone  git@github.com:shankar524/password-generator.git
 cd password-generator
 go mod download
 ```
-- build 
+- build
 ```shell
 go build -o ./pwd-gen .
 ```
@@ -50,10 +50,10 @@ or
 
 | Flag   | Short |type   |Default value |Meaning        |
 | -------| ------|-------|--------------|:-------------:|
-| symbols| s     |number |0             |number of symbols to generate in return text| 
+| symbol | s     |number |0             |number of symbols to generate in return text|
 | up     | u     |number |4             | number of upper case letters to generate in return text|
 | down   | d     |number |3             | number of down case letters to generate in return text|
-| numbers| n     |number |0             | number of numerical digits to generate in return text|
+| number | n     |number |0             | number of numerical digits to generate in return text|
 | copy   | c     |boolean|true          | copy generated text to clipboard.If set false then prints text in console itself|
 
 ### Package usage
@@ -73,9 +73,9 @@ Sample code usage:
   // create textBuilder
   textBuilder := text.TextBuilder{}
   textBuilder.AddRule(text.TextRule{For: text.LOWERCASE, Length: 6})
-  textBuilder.AddRule(text.TextRule{For: text.NUMBERS, Length: 2})
+  textBuilder.AddRule(text.TextRule{For: text.NUMBER, Length: 2})
   textBuilder.AddRule(text.TextRule{For: text.UPPERCASE, Length: 2})
-  textBuilder.AddRule(text.TextRule{For: text.SYMBOLS, Length: 2})
+  textBuilder.AddRule(text.TextRule{For: text.SYMBOL, Length: 2})
 
   generator, err:= textBuilder.Build()
   if err!= nil {
