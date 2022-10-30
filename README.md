@@ -11,34 +11,38 @@ Should have go installed. Go can be downloaded from [here](https://go.dev/dl/).
 ### App usage
 
 - Clone repo:
-```
+```shell
 git clone  git@github.com:shankar524/password-generator.git
 cd password-generator
 go mod download
 ```
 - build 
-```
+```shell
 go build -o ./pwd-gen .
 ```
--check if successfully build
+or
+```shell
+make build
 ```
+- check if successfully build
+```shell
 ./pwd-gen version
 ```
--generate random text
+- generate random text
     - without rules(copies text to clipboard)
-```
+```shell
 ./pwd-gen g
 ```
     - with rules
-```terminal
+```shell
 ./pwd-gen g --numbers=7 --symbols=2 --down=2 --up=3 --copy=false
 ```
 or
-```terminal
+```shell
 ./pwd-gen g -n=7 -s=2 -d=2 -u=3 -c=false
 ```
--help?
-```
+- help?
+```shell
 ./pwd-gen help
 ```
 
