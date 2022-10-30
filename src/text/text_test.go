@@ -24,7 +24,7 @@ func Test_TextBuilder_Build(t *testing.T) {
 	t.Log("When no TextRule is configured")
 	{
 		expectedTextLength := DEFAULT_UPPER_CHARS + DEFAULT_LOWER_CHARS
-		t.Run(fmt.Sprintf("it sets default text rule of length %d and doesnot return error", expectedTextLength), func(t *testing.T) {
+		t.Run(fmt.Sprintf("it sets default text rule of length %d and does not return error", expectedTextLength), func(t *testing.T) {
 			tb := TextBuilder{}
 			textGen, err := tb.Build()
 			if err != nil {
@@ -40,11 +40,11 @@ func Test_TextBuilder_Build(t *testing.T) {
 	}
 	t.Log("When TextRule is configured")
 	{
-		t.Log(fmt.Sprintf("when For value of TextRule is other than %d, %d, %d and %d", UPPERCASE, LOWERCASE, SYMBOLS, NUMBERS))
+		t.Log(fmt.Sprintf("when For value of TextRule is other than %d, %d, %d and %d", UPPERCASE, LOWERCASE, SYMBOL, NUMBER))
 		{
 			t.Run("it should return error", func(t *testing.T) {
 				tb := TextBuilder{}
-				ruleFor := NUMBERS + 1
+				ruleFor := NUMBER + 1
 				tb.AddRule(TextRule{RuleType(ruleFor), 2})
 				_, err := tb.Build()
 				if err == nil {
@@ -62,7 +62,7 @@ func Test_TextBuilder_Build(t *testing.T) {
 		{
 			t.Run("it should return error", func(t *testing.T) {
 				tb := TextBuilder{}
-				tb.AddRule(TextRule{NUMBERS, 0})
+				tb.AddRule(TextRule{NUMBER, 0})
 				_, err := tb.Build()
 				if err == nil {
 					t.Errorf("expected error to but did not receive")
@@ -77,13 +77,13 @@ func Test_TextBuilder_Build(t *testing.T) {
 		}
 		t.Log("When everything is fine")
 		{
-			t.Run("it generates text from provided TextRule and doesnot return error", func(t *testing.T) {
+			t.Run("it generates text from provided TextRule and does not return error", func(t *testing.T) {
 				tb := TextBuilder{}
 				// Add 4 TextRule(s)
 				tb.AddRule(TextRule{UPPERCASE, 2})
 				tb.AddRule(TextRule{LOWERCASE, 3})
-				tb.AddRule(TextRule{SYMBOLS, 2})
-				tb.AddRule(TextRule{NUMBERS, 2})
+				tb.AddRule(TextRule{SYMBOL, 2})
+				tb.AddRule(TextRule{NUMBER, 2})
 				textGenI, err := tb.Build()
 				if err != nil {
 					t.Errorf("Expected error to be %v but received '%s' error", nil, err.Error())
@@ -120,7 +120,7 @@ func Test_text_Generate(t *testing.T) {
 	t.Log("When no TextRule was provided for TextBuilder")
 	{
 		expectedTextLength := DEFAULT_UPPER_CHARS + DEFAULT_LOWER_CHARS
-		t.Run(fmt.Sprintf("it sets default TextRule(%d UPPER_CHARS and %d LOWER_CHARS) of  and doesnot return error", DEFAULT_UPPER_CHARS, DEFAULT_LOWER_CHARS), func(t *testing.T) {
+		t.Run(fmt.Sprintf("it sets default TextRule(%d UPPER_CHARS and %d LOWER_CHARS) of  and does not return error", DEFAULT_UPPER_CHARS, DEFAULT_LOWER_CHARS), func(t *testing.T) {
 			tb := TextBuilder{}
 			textGen, err := tb.Build()
 			if err != nil {
@@ -143,16 +143,16 @@ func Test_text_Generate(t *testing.T) {
 				t.Errorf("expected %d lower characters but received %d instead", DEFAULT_UPPER_CHARS, upperCaseCount)
 			}
 
-			// returned text should not have symbols
-			symbolsCount := len(commonText(generatedText, caseToCharacter[SYMBOLS]))
-			if symbolsCount != 0 {
-				t.Errorf("expected %d symbols characters but received %d instead", 0, symbolsCount)
+			// returned text should not have symbol
+			symbolCount := len(commonText(generatedText, caseToCharacter[SYMBOL]))
+			if symbolCount != 0 {
+				t.Errorf("expected %d symbol characters but received %d instead", 0, symbolCount)
 			}
 
-			// returned text should not have numbers
-			numbersCount := len(commonText(generatedText, caseToCharacter[NUMBERS]))
-			if numbersCount != 0 {
-				t.Errorf("expected %d numbered characters but received %d instead", 0, numbersCount)
+			// returned text should not have number
+			numberCount := len(commonText(generatedText, caseToCharacter[NUMBER]))
+			if numberCount != 0 {
+				t.Errorf("expected %d numbered characters but received %d instead", 0, numberCount)
 			}
 		})
 	}
@@ -163,8 +163,8 @@ func Test_text_Generate(t *testing.T) {
 			// Add TextRule(s)
 			tb.AddRule(TextRule{UPPERCASE, 2}) // 2 uppercase letters
 			tb.AddRule(TextRule{LOWERCASE, 3}) // 3 lowercase letters
-			tb.AddRule(TextRule{SYMBOLS, 2})   // 2 symbols
-			tb.AddRule(TextRule{NUMBERS, 2})   // 2 numbers
+			tb.AddRule(TextRule{SYMBOL, 2})    // 2 symbol
+			tb.AddRule(TextRule{NUMBER, 2})    // 2 number
 			textGen, err := tb.Build()
 			if err != nil {
 				t.Errorf("expected error to be %v but received '%s' error", nil, err.Error())
@@ -187,14 +187,14 @@ func Test_text_Generate(t *testing.T) {
 				t.Errorf("expected %d lower characters but received %d instead", 3, upperCaseCount)
 			}
 
-			symbolsCount := len(commonText(generatedText, caseToCharacter[SYMBOLS]))
-			if symbolsCount != 2 {
-				t.Errorf("expected %d symbols characters but received %d instead", 2, symbolsCount)
+			symbolCount := len(commonText(generatedText, caseToCharacter[SYMBOL]))
+			if symbolCount != 2 {
+				t.Errorf("expected %d symbol characters but received %d instead", 2, symbolCount)
 			}
 
-			numbersCount := len(commonText(generatedText, caseToCharacter[NUMBERS]))
-			if numbersCount != 2 {
-				t.Errorf("expected %d numbered characters but received %d instead", 2, numbersCount)
+			numberCount := len(commonText(generatedText, caseToCharacter[NUMBER]))
+			if numberCount != 2 {
+				t.Errorf("expected %d numbered characters but received %d instead", 2, numberCount)
 			}
 		})
 	}

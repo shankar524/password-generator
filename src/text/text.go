@@ -11,15 +11,15 @@ type RuleType uint8
 const (
 	UPPERCASE RuleType = iota
 	LOWERCASE
-	SYMBOLS
-	NUMBERS
+	SYMBOL
+	NUMBER
 )
 
 const (
 	UPPER_CHARS_SET     = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	LOWER_CHARS_SET     = "abcdefghijklmnopqrstuvwxyz"
 	SPECIAL_CHARS_SET   = "~!@#$%^&*()_+`-={}|[]\\:\"<>?,./"
-	NUMBERS_SET         = "0123456789"
+	NUMBER_SET          = "0123456789"
 	DEFAULT_UPPER_CHARS = 4
 	DEFAULT_LOWER_CHARS = 3
 )
@@ -49,8 +49,8 @@ type Generator interface {
 var caseToCharacter = map[RuleType]string{
 	UPPERCASE: UPPER_CHARS_SET,
 	LOWERCASE: LOWER_CHARS_SET,
-	SYMBOLS:   SPECIAL_CHARS_SET,
-	NUMBERS:   NUMBERS_SET,
+	SYMBOL:    SPECIAL_CHARS_SET,
+	NUMBER:    NUMBER_SET,
 }
 
 func (pb *TextBuilder) AddRule(rule TextRule) Builder {
@@ -69,7 +69,7 @@ func (tb *TextBuilder) Build() (t Generator, err error) {
 	}
 
 	for _, rule := range tb.Rules {
-		if rule.For > NUMBERS {
+		if rule.For > NUMBER {
 			err = fmt.Errorf("no such rule %d", rule.For)
 			return
 		}
